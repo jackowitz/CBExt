@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+
+  "name": "Crypto-Book",
+  "description": "Crypto-Book",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/dialog/oauth*"],
+      "js": ["authorize.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "http://mahan.webfactional.com/dsa/keygen/pets-server/*",
+        "<all_urls>"
+      ],
+      "js": [
+        "jquery-1.11.2.min.js",
+        "jsbn.min.js",
+        "lrs.js",
+        "keys.js",
+        "authenticate.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+	"activeTab",
+    "storage"
+  ]
+}
