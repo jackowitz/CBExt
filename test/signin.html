@@ -1,13 +1,13 @@
 <html>
 	<body>
-		<div class='crypto-book-signin'>
-			<form>
-				<div>
-					<span id='challenge'>challenge</span>
-					<input type='text' id='response'>
-				</div>
-				<input type='button' id='signin' value='Sign in with Crypto-Book'>
-			</form>
-		</div>
+		<form class='crypto-book-signin' action='verify.php'>
+			<div>
+				<span id='challenge'>challenge</span>
+				<input type='text' id='c0' name='c0'>
+				<input type='text' id='s' name='s'>
+				<input type='text' id='tag' name='tag'>
+			</div>
+			<input type='button' id='signin' value='Sign in with Crypto-Book'>
+		</form>
 	</body>
 </html>

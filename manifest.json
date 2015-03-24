@@ -13,12 +13,11 @@
     },
     {
       "matches": [
-        "http://mahan.webfactional.com/dsa/keygen/pets-server/*",
         "<all_urls>"
       ],
       "js": [
         "jquery-1.11.2.min.js",
-        "jsbn.min.js",
+        "jsbn.js",
         "lrs.js",
         "keys.js",
         "authenticate.js"
