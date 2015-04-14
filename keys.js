@@ -12,11 +12,19 @@ function saveKeys() {
 	var keys = $('.crypto-book-keys #keys');
 	if (keys.length) {
 		var ring = JSON.parse(keys[0].innerText);
-		chrome.storage.local.set({'ring': ring}, function() {
-			if (chrome.runtime.lastError)
+		var groupid = ring['groupid'];
+		var name = ring['name'];
+
+		var obj = {};
+		obj[groupid] = ring;
+		chrome.storage.local.set(obj, function() {
+			if (chrome.runtime.lastError) {
 				alert('Saving keys failed.');
-			else
-				alert('Key ring saved successfully.');
+			} else {
+				var fmt = 'Keys for ' + name + ' (' +
+					groupid + ') saved successfully.';
+				alert(fmt);
+			}
 		});
 	}
 }

@@ -1,14 +1,15 @@
 // Find the Crypto-Book signin button and inject our in-the-browser
 // LRS authentication mechanism as the onclick handler.
 $(function injectAuthenticate() {
-	var signin = $('.crypto-book-signin #signin');
-	if (signin.length) {
-		signin.on('click', authenticate);
-	}
+	$('.crypto-book-signin-btn').each(function() {
+		$(this).on('click', function() {
+			authenticate($(this));
+		});
+	});
 });
 
 // Do the acutal LRS authentication process.
-function authenticate() {
+function authenticate(btn) {
 	// 1. Extract the challenge (hidden) field from the form.
 	var challenge = $('.crypto-book-signin #challenge');
 	if (challenge.length > 0) {
@@ -16,12 +17,15 @@ function authenticate() {
 		var challenge = challenge[0].innerText;
 		// 2. Make sure that an appropriate set of keys are saved
 		//    in Chrome local storage.
-		chrome.storage.local.get('ring', function(items) {
-			if (!items.hasOwnProperty('ring')) {
-				alert('Do you have keys saved?');
+		var groupid = btn.attr('id');
+		var href = btn.attr('data-href');
+		chrome.storage.local.get(null, function(items) {
+			if (!items.hasOwnProperty(groupid)) {
+				window.location.href = href;
 			} else {
-				var ring = items.ring;
+				var ring = items[groupid];
 				var pi = 0;
+
 				// 3. Find our place in the ring. XXX This can be
 				//    definitely be moved out of the every-auth path.
 				ring.x = new BigInteger(ring.x);
@@ -40,6 +44,7 @@ function authenticate() {
 				$('.crypto-book-signin #tag').val(sig[2]);
 				$('.crypto-book-signin #start').val(start);
 				$('.crypto-book-signin #end').val(end);
+				$('.crypto-book-signin #groupid').val('groups/'+groupid);
 
 				var form = $('.crypto-book-signin');
 				if (form.length) {
