@@ -32,6 +32,12 @@ function _h1(message) {
 	return new BigInteger(x, 16).mod(q);
 }
 
+function _h2(message) {
+	var x = hex_sha1(message);
+	var y = new BigInteger(x, 16).mod(q);
+	return g.modPow(y, p);
+}
+
 function _random(rng) {
 	var length = q.bitLength();
 	return new BigInteger(length, 1, rng);
@@ -40,14 +46,14 @@ function _random(rng) {
 function sign(m, L, x, pi) {
 	var rng = new SecureRandom();
 
-	var h = g.clone();
-	var tag = h.modPow(x, p);
-
 	var n = L.length;
 	var keystring = '';
 	for (var i = 0; i < n; i++) {
 		keystring += L[i].toString();
 	}
+	var h = _h2(keystring);
+	var tag = h.modPow(x, p);
+
 	keystring += tag.toString();
 	keystring += m;
 
@@ -92,12 +98,13 @@ function verify(sig, m, L) {
 
 	var s = sig[1];
 	var tag = sig[2];
-	var h = g.clone();
 
 	var keystring = '';
 	for (var i = 0; i < n; i++) {
 		keystring += L[i].toString();
 	}
+	var h = _h2(keystring);
+
 	keystring += tag.toString();
 	keystring += m;
 
