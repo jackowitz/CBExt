@@ -3,12 +3,15 @@
 
   "name": "Crypto-Book",
   "description": "Crypto-Book",
-  "version": "1.0",
+  "version": "1.0.2",
 
   "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/dialog/oauth*"],
-      "js": ["authorize.js"],
+      "matches": ["https://www.facebook.com/dialog/oauth*mahan*"],
+      "js": [
+        "jquery-1.11.2.min.js",
+        "authorize.js"
+      ],
       "run_at": "document_end"
     },
     {
