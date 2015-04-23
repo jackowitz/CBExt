@@ -6,6 +6,12 @@ $(function injectAuthenticate() {
 			authenticate($(this));
 		});
 	});
+	$('.crypto-book-get-extn').each(function() {
+		$(this).hide();
+	});
+	$('.crypto-book-chat').each(function() {
+		$(this).removeAttr("hidden");
+	});
 });
 
 // Do the acutal LRS authentication process.
