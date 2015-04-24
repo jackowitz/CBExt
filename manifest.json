@@ -7,7 +7,7 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.facebook.com/dialog/oauth*mahan*"],
+      "matches": ["https://www.facebook.com/dialog/oauth*cryptobook*"],
       "js": [
         "jquery-1.11.2.min.js",
         "authorize.js"
