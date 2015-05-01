@@ -5,6 +5,16 @@
   "description": "Crypto-Book",
   "version": "1.0.3",
 
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "browser_action": {
+    "default_icon": "cblogo.png",
+    "default_popup": "popup.html",
+    "default_title": "Crypto-Book!!!"
+  },
+
   "content_scripts": [
     {
       "matches": ["https://www.facebook.com/dialog/oauth*cryptobook*"],
