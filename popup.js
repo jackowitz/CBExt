@@ -2,7 +2,7 @@ $(function displayStoredRings() {
 	//alert("Your book is overdue.");
 	chrome.storage.local.get(null, function(items) {
 		for(var ring in items) {
-			$('body').append(ring);
+			$('body').append(items[ring].name);
 			$('body').append('<br>');
 		}
 	}); 
